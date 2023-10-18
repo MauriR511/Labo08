@@ -1,22 +1,28 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import Header from './assets/components/header/header'
-import Range from './assets/components/range/range'
-import Random from './assets/components/random/random'
-import Date from './assets/components/date/date'
-import Description from './assets/components/description/description'
+import Header from './assets/components/header/Header'
 import Card from './assets/components/card/card'
+import LoadingOverlay from './assets/components/loading/loading'
+import Range from './assets/pages/range/RangePage'
+import Random from './assets/pages/random/Random'
+import Date from './assets/pages/date/Date'
+import Description from './assets/pages/description/Description'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <Header />
-      <Range  />
-      <Card />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Range />} />
+          <Route path="/random" element={<Random />} />
+          <Route path="/date" element={<Date />} />
+          <Route path="/description" element={<Description />} />
+          <Route path="/description/:id" element={<Description />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

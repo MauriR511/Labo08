@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Card = ({ element }) => {
   const encodedExplanation = encodeURIComponent(element.explanation);
@@ -8,19 +9,21 @@ const Card = ({ element }) => {
     <li className="card">
       <div className="card__content">
         <h3 className="card__title">
-          <a
-            href={`description.html?date=${"element.date"}&explanation=${"encodedExplanation"}&title=${"element.title"}&mediaURL=${"mediaURL"}`}
-            className="card__link"
-          >
-            {"element.title"}
-          </a>
+          <Link to={`/description/${element.date}`}>
+            <a
+              href={`description.html?date=${element.date}&explanation=${encodedExplanation}&title=${element.title}&mediaURL=${mediaURL}`}
+              className="card__link"
+            >
+              {element.title}
+            </a>
+          </Link>
         </h3>
-        <time className="card__date">{"element.date"}</time>
+        <time className="card__date">{element.date}</time>
       </div>
       <img
         className="card__img"
-        src='https://png.pngtree.com/png-vector/20190823/ourmid/pngtree-computer-computing-server-cpu-abstract-flat-color-icon-templa-png-image_1696187.jpg'
-        alt={"element.title"}
+        src={element["url"]}
+        alt={element.title}
       />
     </li>
   );
